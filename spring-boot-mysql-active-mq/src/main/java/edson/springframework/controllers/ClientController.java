@@ -91,13 +91,12 @@ public class ClientController {
     }
 
     /**
-     * Additional overload to satisfy callers expecting a method with a Long parameter.
+     * Helper method to allow other components to trigger a client message send
+     * without going through the HTTP layer.
      *
      * @param id the client identifier
-     * @return redirect string to the client detail page
      */
-    public String sendMessage(Long id) {
+    public void sendMessage(Long id) {
         clientService.sendMessage(String.valueOf(id));
-        return "redirect:/client/show/" + id;
     }
 }

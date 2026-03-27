@@ -101,4 +101,15 @@ public class ProductController {
     public void sendMessage(String id) {
         productService.sendMessage(id);
     }
+
+    /**
+     * Overloaded helper to satisfy callers expecting a Long parameter.
+     *
+     * @param id the product identifier
+     * @return redirect string to the product detail page
+     */
+    public String sendMessage(Long id) {
+        productService.sendMessage(String.valueOf(id));
+        return "redirect:/product/show/" + id;
+    }
 }
