@@ -95,33 +95,38 @@ public class ClientController {
      * without going through the HTTP layer.
      *
      * @param id the client identifier
-     */
-    public void sendMessage(Long id) {
-        clientService.sendMessage(String.valueOf(id));
-    }
-
-    /**
-     * Overloaded helper to satisfy callers expecting a Long parameter and a redirect result.
-     *
-     * @param id the client identifier
      * @return redirect string to the client detail page
      */
-    public String sendMessage(Long id, boolean redirect) {
+    public String sendMessage(Long id) {
         clientService.sendMessage(String.valueOf(id));
         return "redirect:/client/show/" + id;
     }
 
     /**
-     * Additional overload accepting a String identifier.
+     * Overloaded helper to satisfy callers expecting a String identifier.
      *
      * @param id the client identifier as String
+     * @return redirect string to the client detail page
      */
-    public void sendMessage(String id) {
+    public String sendMessage(String id) {
         clientService.sendMessage(id);
+        return "redirect:/client/show/" + id;
     }
 
     /**
-     * Overloaded helper accepting a String identifier and returning a redirect.
+     * Overloaded helper to satisfy callers expecting a Boolean flag for redirect.
+     *
+     * @param id       the client identifier
+     * @param redirect flag indicating whether to return a redirect URL
+     * @return redirect URL if requested, otherwise null
+     */
+    public String sendMessage(Long id, boolean redirect) {
+        clientService.sendMessage(String.valueOf(id));
+        return redirect ? "redirect:/client/show/" + id : null;
+    }
+
+    /**
+     * Overloaded helper to satisfy callers expecting a Boolean flag for redirect with String id.
      *
      * @param id       the client identifier as String
      * @param redirect flag indicating whether to return a redirect URL

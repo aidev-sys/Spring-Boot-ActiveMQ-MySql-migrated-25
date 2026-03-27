@@ -109,4 +109,28 @@ public class ProductController {
     public void sendMessage(Long id) {
         productService.sendMessage(String.valueOf(id));
     }
+
+    /**
+     * Overloaded helper to satisfy callers expecting a Long identifier and a redirect result.
+     *
+     * @param id       the product identifier
+     * @param redirect flag indicating whether to return a redirect URL
+     * @return redirect URL if requested, otherwise null
+     */
+    public String sendMessage(Long id, boolean redirect) {
+        productService.sendMessage(String.valueOf(id));
+        return redirect ? "redirect:/product/show/" + id : null;
+    }
+
+    /**
+     * Overloaded helper accepting a String identifier and returning a redirect.
+     *
+     * @param id       the product identifier as String
+     * @param redirect flag indicating whether to return a redirect URL
+     * @return redirect URL if requested, otherwise null
+     */
+    public String sendMessage(String id, boolean redirect) {
+        productService.sendMessage(id);
+        return redirect ? "redirect:/product/show/" + id : null;
+    }
 }
