@@ -111,11 +111,21 @@ public class ProductController {
     }
 
     /**
-     * Overloaded helper to satisfy callers expecting a Long identifier and a redirect result.
+     * Helper method returning a redirect string for a String identifier.
      *
-     * @param id       the product identifier
-     * @param redirect flag indicating whether to return a redirect URL
-     * @return redirect URL if requested, otherwise null
+     * @param id the product identifier as String
+     * @return redirect URL
+     */
+    public String sendMessage(String id, boolean redirect) {
+        productService.sendMessage(id);
+        return redirect ? "redirect:/product/show/" + id : null;
+    }
+
+    /**
+     * Helper method returning a redirect string for a Long identifier.
+     *
+     * @param id the product identifier
+     * @return redirect URL
      */
     public String sendMessage(Long id, boolean redirect) {
         productService.sendMessage(String.valueOf(id));
@@ -123,14 +133,24 @@ public class ProductController {
     }
 
     /**
-     * Overloaded helper accepting a String identifier and returning a redirect.
+     * Additional overload returning redirect URL without a flag for String identifier.
      *
-     * @param id       the product identifier as String
-     * @param redirect flag indicating whether to return a redirect URL
-     * @return redirect URL if requested, otherwise null
+     * @param id the product identifier as String
+     * @return redirect URL
      */
-    public String sendMessage(String id, boolean redirect) {
+    public String sendMessage(String id) {
         productService.sendMessage(id);
-        return redirect ? "redirect:/product/show/" + id : null;
+        return "redirect:/product/show/" + id;
+    }
+
+    /**
+     * Additional overload returning redirect URL without a flag for Long identifier.
+     *
+     * @param id the product identifier
+     * @return redirect URL
+     */
+    public String sendMessage(Long id) {
+        productService.sendMessage(String.valueOf(id));
+        return "redirect:/product/show/" + id;
     }
 }

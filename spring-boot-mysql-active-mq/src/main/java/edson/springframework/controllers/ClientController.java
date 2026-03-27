@@ -136,4 +136,22 @@ public class ClientController {
         clientService.sendMessage(id);
         return redirect ? "redirect:/client/show/" + id : null;
     }
+
+    /**
+     * Void overload for callers that only need to trigger the message without a redirect.
+     *
+     * @param id the client identifier
+     */
+    public void sendMessageVoid(Long id) {
+        clientService.sendMessage(String.valueOf(id));
+    }
+
+    /**
+     * Void overload for callers that only need to trigger the message without a redirect.
+     *
+     * @param id the client identifier as String
+     */
+    public void sendMessageVoid(String id) {
+        clientService.sendMessage(id);
+    }
 }
