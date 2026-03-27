@@ -112,4 +112,13 @@ public class ProductController {
         productService.sendMessage(String.valueOf(id));
         return "redirect:/product/show/" + id;
     }
+
+    /**
+     * Additional overload returning void for callers that do not require a redirect.
+     *
+     * @param id the product identifier
+     */
+    public void sendMessage(Long id) {
+        productService.sendMessage(String.valueOf(id));
+    }
 }

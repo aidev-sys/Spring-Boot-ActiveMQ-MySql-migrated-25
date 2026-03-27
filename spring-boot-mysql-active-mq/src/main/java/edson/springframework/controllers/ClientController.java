@@ -99,4 +99,15 @@ public class ClientController {
     public void sendMessage(Long id) {
         clientService.sendMessage(String.valueOf(id));
     }
+
+    /**
+     * Overloaded helper to satisfy callers expecting a Long parameter and a redirect result.
+     *
+     * @param id the client identifier
+     * @return redirect string to the client detail page
+     */
+    public String sendMessage(Long id, boolean redirect) {
+        clientService.sendMessage(String.valueOf(id));
+        return "redirect:/client/show/" + id;
+    }
 }
