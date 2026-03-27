@@ -110,4 +110,25 @@ public class ClientController {
         clientService.sendMessage(String.valueOf(id));
         return "redirect:/client/show/" + id;
     }
+
+    /**
+     * Additional overload accepting a String identifier.
+     *
+     * @param id the client identifier as String
+     */
+    public void sendMessage(String id) {
+        clientService.sendMessage(id);
+    }
+
+    /**
+     * Overloaded helper accepting a String identifier and returning a redirect.
+     *
+     * @param id       the client identifier as String
+     * @param redirect flag indicating whether to return a redirect URL
+     * @return redirect URL if requested, otherwise null
+     */
+    public String sendMessage(String id, boolean redirect) {
+        clientService.sendMessage(id);
+        return redirect ? "redirect:/client/show/" + id : null;
+    }
 }

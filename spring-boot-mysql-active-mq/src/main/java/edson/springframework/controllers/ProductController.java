@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import edson.springframework.SpringBootActiveMQApplication;
 import edson.springframework.commands.ProductForm;
 import edson.springframework.converters.ProductToProductForm;
 import edson.springframework.domain.Product;
@@ -103,18 +102,7 @@ public class ProductController {
     }
 
     /**
-     * Overloaded helper to satisfy callers expecting a Long parameter.
-     *
-     * @param id the product identifier
-     * @return redirect string to the product detail page
-     */
-    public String sendMessage(Long id) {
-        productService.sendMessage(String.valueOf(id));
-        return "redirect:/product/show/" + id;
-    }
-
-    /**
-     * Additional overload returning void for callers that do not require a redirect.
+     * Helper method for callers expecting a Long identifier.
      *
      * @param id the product identifier
      */
