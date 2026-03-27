@@ -91,49 +91,30 @@ public class ProductController {
         return "redirect:/product/show/" + id;
     }
 
-    /**
-     * Helper method to allow other components to trigger a product message send
-     * without going through the HTTP layer.
-     *
-     * @param id the product identifier
-     */
-    public void sendMessage(String id) {
-        productService.sendMessage(id);
-    }
+    // ------------------------------------------------------------------------
+    // Helper methods for sending product messages from other components
+    // ------------------------------------------------------------------------
 
     /**
-     * Helper method for callers expecting a Long identifier.
-     *
-     * @param id the product identifier
-     */
-    public void sendMessage(Long id) {
-        productService.sendMessage(String.valueOf(id));
-    }
-
-    /**
-     * Helper method returning a redirect string for a String identifier.
+     * Void overload for callers that only need to trigger the message without a redirect.
      *
      * @param id the product identifier as String
-     * @return redirect URL
      */
-    public String sendMessage(String id, boolean redirect) {
+    public void sendMessageVoid(String id) {
         productService.sendMessage(id);
-        return redirect ? "redirect:/product/show/" + id : null;
     }
 
     /**
-     * Helper method returning a redirect string for a Long identifier.
+     * Void overload for callers that only need to trigger the message without a redirect.
      *
-     * @param id the product identifier
-     * @return redirect URL
+     * @param id the product identifier as Long
      */
-    public String sendMessage(Long id, boolean redirect) {
+    public void sendMessageVoid(Long id) {
         productService.sendMessage(String.valueOf(id));
-        return redirect ? "redirect:/product/show/" + id : null;
     }
 
     /**
-     * Additional overload returning redirect URL without a flag for String identifier.
+     * Returns a redirect URL after sending the message (String identifier).
      *
      * @param id the product identifier as String
      * @return redirect URL
@@ -144,13 +125,37 @@ public class ProductController {
     }
 
     /**
-     * Additional overload returning redirect URL without a flag for Long identifier.
+     * Returns a redirect URL after sending the message (Long identifier).
      *
-     * @param id the product identifier
+     * @param id the product identifier as Long
      * @return redirect URL
      */
     public String sendMessage(Long id) {
         productService.sendMessage(String.valueOf(id));
         return "redirect:/product/show/" + id;
+    }
+
+    /**
+     * Returns a redirect URL conditionally based on the flag (String identifier).
+     *
+     * @param id       the product identifier as String
+     * @param redirect flag indicating whether to return a redirect URL
+     * @return redirect URL if flag is true, otherwise null
+     */
+    public String sendMessage(String id, boolean redirect) {
+        productService.sendMessage(id);
+        return redirect ? "redirect:/product/show/" + id : null;
+    }
+
+    /**
+     * Returns a redirect URL conditionally based on the flag (Long identifier).
+     *
+     * @param id       the product identifier as Long
+     * @param redirect flag indicating whether to return a redirect URL
+     * @return redirect URL if flag is true, otherwise null
+     */
+    public String sendMessage(Long id, boolean redirect) {
+        productService.sendMessage(String.valueOf(id));
+        return redirect ? "redirect:/product/show/" + id : null;
     }
 }

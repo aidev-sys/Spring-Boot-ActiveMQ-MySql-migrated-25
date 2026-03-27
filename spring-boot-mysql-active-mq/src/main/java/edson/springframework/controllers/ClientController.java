@@ -95,63 +95,39 @@ public class ClientController {
      * without going through the HTTP layer.
      *
      * @param id the client identifier
-     * @return redirect string to the client detail page
      */
-    public String sendMessage(Long id) {
+    public void sendMessage(Long id) {
         clientService.sendMessage(String.valueOf(id));
-        return "redirect:/client/show/" + id;
     }
 
     /**
      * Overloaded helper to satisfy callers expecting a String identifier.
      *
      * @param id the client identifier as String
-     * @return redirect string to the client detail page
      */
-    public String sendMessage(String id) {
+    public void sendMessage(String id) {
         clientService.sendMessage(id);
-        return "redirect:/client/show/" + id;
     }
 
     /**
      * Overloaded helper to satisfy callers expecting a Boolean flag for redirect.
      *
      * @param id       the client identifier
-     * @param redirect flag indicating whether to return a redirect URL
-     * @return redirect URL if requested, otherwise null
+     * @param redirect flag indicating whether a redirect should be performed
      */
-    public String sendMessage(Long id, boolean redirect) {
+    public void sendMessage(Long id, boolean redirect) {
         clientService.sendMessage(String.valueOf(id));
-        return redirect ? "redirect:/client/show/" + id : null;
+        // redirect handling is performed by the caller if needed
     }
 
     /**
      * Overloaded helper to satisfy callers expecting a Boolean flag for redirect with String id.
      *
      * @param id       the client identifier as String
-     * @param redirect flag indicating whether to return a redirect URL
-     * @return redirect URL if requested, otherwise null
+     * @param redirect flag indicating whether a redirect should be performed
      */
-    public String sendMessage(String id, boolean redirect) {
+    public void sendMessage(String id, boolean redirect) {
         clientService.sendMessage(id);
-        return redirect ? "redirect:/client/show/" + id : null;
-    }
-
-    /**
-     * Void overload for callers that only need to trigger the message without a redirect.
-     *
-     * @param id the client identifier
-     */
-    public void sendMessageVoid(Long id) {
-        clientService.sendMessage(String.valueOf(id));
-    }
-
-    /**
-     * Void overload for callers that only need to trigger the message without a redirect.
-     *
-     * @param id the client identifier as String
-     */
-    public void sendMessageVoid(String id) {
-        clientService.sendMessage(id);
+        // redirect handling is performed by the caller if needed
     }
 }
