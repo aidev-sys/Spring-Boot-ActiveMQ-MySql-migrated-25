@@ -17,9 +17,6 @@ import edson.springframework.domain.Product;
 import edson.springframework.services.ProductService;
 
 import jakarta.validation.Valid;
-import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author edson 16/01/2019

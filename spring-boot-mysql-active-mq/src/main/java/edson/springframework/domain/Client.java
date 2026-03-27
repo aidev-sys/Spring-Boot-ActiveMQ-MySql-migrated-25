@@ -1,9 +1,8 @@
 package edson.springframework.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import java.math.BigDecimal;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
  * @author edson 16/01/2019
@@ -16,7 +15,7 @@ public class Client {
     private Long id;
     private String name;
     private boolean messageReceived;
-    private Integer messageCount = 0; //init to zero
+    private Integer messageCount = 0; // init to zero
 
     public Long getId() {
         return id;
@@ -26,16 +25,15 @@ public class Client {
         this.id = id;
     }
 
-
     public String getName() {
-		return name;
-	}
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public boolean isMessageReceived() {
+    public boolean isMessageReceived() {
         return messageReceived;
     }
 

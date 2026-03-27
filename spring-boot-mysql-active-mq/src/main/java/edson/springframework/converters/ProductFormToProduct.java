@@ -16,12 +16,22 @@ public class ProductFormToProduct implements Converter<ProductForm, Product> {
     @Override
     public Product convert(ProductForm productForm) {
         Product product = new Product();
-        if (productForm.getId() != null  && !StringUtils.isEmpty(productForm.getId())) {
-            product.setId(new Long(productForm.getId()));
+        if (productForm.getId() != null && !StringUtils.isEmpty(productForm.getId())) {
+            product.setId(productForm.getId());
         }
         product.setDescription(productForm.getDescription());
         product.setPrice(productForm.getPrice());
         product.setImageUrl(productForm.getImageUrl());
         return product;
+    }
+
+    /**
+     * Additional helper method to satisfy callers expecting a specific method name.
+     *
+     * @param productForm the source form
+     * @return the converted {@link Product}
+     */
+    public Product toProduct(ProductForm productForm) {
+        return convert(productForm);
     }
 }
