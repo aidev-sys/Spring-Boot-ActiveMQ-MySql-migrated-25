@@ -3,7 +3,6 @@ package edson.springframework.controllers;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,11 +16,10 @@ import edson.springframework.converters.ProductToProductForm;
 import edson.springframework.domain.Product;
 import edson.springframework.services.ProductService;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
-
 
 /**
  * @author edson 16/01/2019

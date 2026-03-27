@@ -1,0 +1,15 @@
+---
+applications:
+- name: Spring-Boot-ActiveMQ-MySql-modernized-spring-boot-mysql-active-mq
+  memory: 1G
+  instances: 1
+  buildpacks:
+    - java_buildpack
+  path: spring-boot-mysql-active-mq/target/*.jar
+  env:
+    JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 21.+ } }'
+    SPRING_PROFILES_ACTIVE: cloud
+  services:
+    - modernized-postgres
+    - modernized-rabbitmq
+

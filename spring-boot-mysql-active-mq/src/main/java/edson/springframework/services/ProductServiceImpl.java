@@ -3,7 +3,7 @@ package edson.springframework.services;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jms.core.JmsTemplate;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 
 import edson.springframework.SpringBootActiveMQApplication;
@@ -27,14 +27,14 @@ public class ProductServiceImpl implements ProductService {
 
     private ProductRepository productRepository;
     private ProductFormToProduct productFormToProduct;
-    private JmsTemplate jmsTemplate;
+    private RabbitTemplate rabbitTemplate;
 
     @Autowired
     public ProductServiceImpl(ProductRepository productRepository, ProductFormToProduct productFormToProduct,
-                              JmsTemplate jmsTemplate) {
+                              RabbitTemplate rabbitTemplate) {
         this.productRepository = productRepository;
         this.productFormToProduct = productFormToProduct;
-        this.jmsTemplate = jmsTemplate;
+        this.rabbitTemplate = rabbitTemplate;
     }
 
 
@@ -75,6 +75,6 @@ public class ProductServiceImpl implements ProductService {
         Map<String, String> actionmap = new HashMap<>();
         actionmap.put("id", id);
         log.info("Sending the index request through queue message");
-        jmsTemplate.convertAndSend(SpringBootActiveMQApplication.PRODUCT_MESSAGE_QUEUE, actionmap);
+        rabbitTemplate.convertAndSend(SpringBootActiveMQApplication.PRODUCT_MESSAGE_QUEUE, actionmap);
     }
 }

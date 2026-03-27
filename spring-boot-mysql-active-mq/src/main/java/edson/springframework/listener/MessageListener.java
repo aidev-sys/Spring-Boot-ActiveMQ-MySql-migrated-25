@@ -2,7 +2,8 @@ package edson.springframework.listener;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.jms.annotation.JmsListener;
+import org.springframework.amqp.rabbit.annotation.Queue;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 import edson.springframework.SpringBootActiveMQApplication;
@@ -31,7 +32,7 @@ public class MessageListener {
      * See {@link edson.springframework.SpringBootActiveMQApplication} for more details
      * @param message
      */
-    @JmsListener(destination = SpringBootActiveMQApplication.PRODUCT_MESSAGE_QUEUE, containerFactory = "jmsFactory")
+    @RabbitListener(queuesToDeclare = @Queue(name = SpringBootActiveMQApplication.PRODUCT_MESSAGE_QUEUE))
     public void receiveMessage(Map<String, String> message) {
         log.info("Received <" + message + ">");
         Long id = Long.valueOf(message.get("id"));

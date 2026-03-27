@@ -16,10 +16,10 @@ public class ClientFormToClient implements Converter<ClientForm, Client> {
     @Override
     public Client convert(ClientForm clientForm) {
         Client client = new Client();
-        if (clientForm.getId() != null  && !StringUtils.isEmpty(clientForm.getId())) {
+        if (clientForm.getId() != null && !StringUtils.isEmpty(clientForm.getId())) {
             client.setId(new Long(clientForm.getId()));
         }
-        
+
         client.setName(clientForm.getName());
 
         return client;

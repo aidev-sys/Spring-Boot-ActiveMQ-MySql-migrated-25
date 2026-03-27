@@ -1,6 +1,5 @@
 package edson.springframework.commands;
 
-
 import java.math.BigDecimal;
 
 /**
