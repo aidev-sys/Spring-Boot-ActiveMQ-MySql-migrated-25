@@ -96,66 +96,42 @@ public class ProductController {
     // ------------------------------------------------------------------------
 
     /**
-     * Void overload for callers that only need to trigger the message without a redirect.
+     * Trigger a product message without returning any view.
      *
      * @param id the product identifier as String
      */
-    public void sendMessageVoid(String id) {
+    public void sendMessage(String id) {
         productService.sendMessage(id);
     }
 
     /**
-     * Void overload for callers that only need to trigger the message without a redirect.
+     * Trigger a product message without returning any view.
      *
      * @param id the product identifier as Long
      */
-    public void sendMessageVoid(Long id) {
+    public void sendMessage(Long id) {
         productService.sendMessage(String.valueOf(id));
     }
 
     /**
-     * Returns a redirect URL after sending the message (String identifier).
-     *
-     * @param id the product identifier as String
-     * @return redirect URL
-     */
-    public String sendMessage(String id) {
-        productService.sendMessage(id);
-        return "redirect:/product/show/" + id;
-    }
-
-    /**
-     * Returns a redirect URL after sending the message (Long identifier).
-     *
-     * @param id the product identifier as Long
-     * @return redirect URL
-     */
-    public String sendMessage(Long id) {
-        productService.sendMessage(String.valueOf(id));
-        return "redirect:/product/show/" + id;
-    }
-
-    /**
-     * Returns a redirect URL conditionally based on the flag (String identifier).
+     * Trigger a product message optionally performing a redirect.
      *
      * @param id       the product identifier as String
-     * @param redirect flag indicating whether to return a redirect URL
-     * @return redirect URL if flag is true, otherwise null
+     * @param redirect flag indicating whether a redirect should be performed
      */
-    public String sendMessage(String id, boolean redirect) {
+    public void sendMessage(String id, boolean redirect) {
         productService.sendMessage(id);
-        return redirect ? "redirect:/product/show/" + id : null;
+        // Redirect handling, if needed, is performed by the caller.
     }
 
     /**
-     * Returns a redirect URL conditionally based on the flag (Long identifier).
+     * Trigger a product message optionally performing a redirect.
      *
      * @param id       the product identifier as Long
-     * @param redirect flag indicating whether to return a redirect URL
-     * @return redirect URL if flag is true, otherwise null
+     * @param redirect flag indicating whether a redirect should be performed
      */
-    public String sendMessage(Long id, boolean redirect) {
+    public void sendMessage(Long id, boolean redirect) {
         productService.sendMessage(String.valueOf(id));
-        return redirect ? "redirect:/product/show/" + id : null;
+        // Redirect handling, if needed, is performed by the caller.
     }
 }

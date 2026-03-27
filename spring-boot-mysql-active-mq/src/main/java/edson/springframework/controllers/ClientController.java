@@ -95,18 +95,22 @@ public class ClientController {
      * without going through the HTTP layer.
      *
      * @param id the client identifier
+     * @return redirect URL to the client view
      */
-    public void sendMessage(Long id) {
+    public String sendMessage(Long id) {
         clientService.sendMessage(String.valueOf(id));
+        return "redirect:/client/show/" + id;
     }
 
     /**
      * Overloaded helper to satisfy callers expecting a String identifier.
      *
      * @param id the client identifier as String
+     * @return redirect URL to the client view
      */
-    public void sendMessage(String id) {
+    public String sendMessage(String id) {
         clientService.sendMessage(id);
+        return "redirect:/client/show/" + id;
     }
 
     /**
@@ -114,10 +118,11 @@ public class ClientController {
      *
      * @param id       the client identifier
      * @param redirect flag indicating whether a redirect should be performed
+     * @return redirect URL if {@code redirect} is {@code true}, otherwise {@code null}
      */
-    public void sendMessage(Long id, boolean redirect) {
+    public String sendMessage(Long id, boolean redirect) {
         clientService.sendMessage(String.valueOf(id));
-        // redirect handling is performed by the caller if needed
+        return redirect ? "redirect:/client/show/" + id : null;
     }
 
     /**
@@ -125,9 +130,10 @@ public class ClientController {
      *
      * @param id       the client identifier as String
      * @param redirect flag indicating whether a redirect should be performed
+     * @return redirect URL if {@code redirect} is {@code true}, otherwise {@code null}
      */
-    public void sendMessage(String id, boolean redirect) {
+    public String sendMessage(String id, boolean redirect) {
         clientService.sendMessage(id);
-        // redirect handling is performed by the caller if needed
+        return redirect ? "redirect:/client/show/" + id : null;
     }
 }
